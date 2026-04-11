@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spf13/cobra"
 	"github.com/vypher-io/cli/pkg/config"
 	"github.com/vypher-io/cli/pkg/report"
 	"github.com/vypher-io/cli/pkg/scanner"
-	"github.com/spf13/cobra"
 )
 
 var (

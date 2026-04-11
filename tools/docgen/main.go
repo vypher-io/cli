@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/vypher-io/cli/cmd"
 	"github.com/spf13/cobra/doc"
+	"github.com/vypher-io/cli/cmd"
 )
 
 func main() {

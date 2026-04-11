@@ -21,7 +21,7 @@ go build -o vypher
 **macOS via Homebrew:**
 
 ```bash
-brew install vypher-io/tap/vypher
+brew install vypher-io/tap/cli
 ```
 
 ## Testing

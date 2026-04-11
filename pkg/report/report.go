@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/vypher-io/cli/pkg/engine"
 	"github.com/fatih/color"
+	"github.com/vypher-io/cli/pkg/engine"
 )
 
 // FileResult holds the scan results for a single file

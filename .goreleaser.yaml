@@ -62,7 +62,7 @@ release:
   name_template: "v{{ .Version }}"
 
 brews:
-  - name: vypher
+  - name: cli
     repository:
       owner: vypher-io
       name: homebrew-tap
