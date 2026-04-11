@@ -1,0 +1,11 @@
+# Compiled binary
+vypher
+vypher.exe
+
+# Test & coverage artifacts
+cover.out
+cover.html
+*.test
+
+# OS
+.DS_Store
