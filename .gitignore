@@ -7,5 +7,8 @@ cover.out
 cover.html
 *.test
 
+# GoReleaser output
+dist/
+
 # OS
 .DS_Store

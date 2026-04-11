@@ -1,0 +1,79 @@
+# .goreleaser.yaml
+# https://goreleaser.com
+
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: vypher
+    main: .
+    binary: vypher
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: vypher
+    builds:
+      - vypher
+    name_template: "vypher_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - LICENSE
+      - cli/README.md
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - Merge pull request
+      - Merge branch
+
+release:
+  github:
+    owner: vypher-io
+    name: cli
+  draft: false
+  prerelease: auto
+  name_template: "v{{ .Version }}"
+
+brews:
+  - name: vypher
+    repository:
+      owner: vypher-io
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    homepage: "https://github.com/vypher-io/cli"
+    description: "CLI tool for scanning files for PII and PHI (Finance & Healthcare)"
+    license: "MIT"
+    commit_author:
+      name: vypher-bot
+      email: bot@vypher.io
+    install: |
+      bin.install "vypher"
+    test: |
+      system "#{bin}/vypher", "--version"
