@@ -1,12 +1,19 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
 var cfgFile string
+var appVersion = "dev"
+
+// SetVersion is called from main to inject the build-time version.
+func SetVersion(v string) {
+	appVersion = v
+}
 
 var rootCmd = &cobra.Command{
 	Use:   "vypher",
@@ -17,6 +24,14 @@ and Protected Health Information (PHI) with a focus on finance and healthcare da
 It helps developers and security professionals identify sensitive data leaks in their codebase or file systems.
 
 Use --config to load settings from a YAML configuration file.`,
+}
+
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version of vypher",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("vypher %s\n", appVersion)
+	},
 }
 
 func GetRootCmd() *cobra.Command {
@@ -32,4 +47,5 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (e.g. .vypher.yaml)")
+	rootCmd.AddCommand(versionCmd)
 }
