@@ -70,6 +70,14 @@ Vypher supports multiple output formats: **console** (default), **JSON**, and **
 ./vypher scan -t ./src
 ```
 
+Findings are reported with the file path and line number for each match:
+
+```
+File: /path/to/src/users.go
+  - [Email] jo****om (Line: 42)
+  - [SSN] 12****89 (Line: 87)
+```
+
 **JSON Output:**
 
 ```bash
@@ -179,6 +187,25 @@ By default, Vypher ignores the following directories:
 - `vendor`
 - `.venv`
 - `__pycache__`
+- `dist`
+- `build`
+- `.next`
+- `.nuxt`
+- `out`
+
+### Default Ignored Files
+
+The following files are skipped by default because they contain checksums, hashes, or other generated content that produce false positives:
+- `package-lock.json`
+- `yarn.lock`
+- `pnpm-lock.yaml`
+- `bun.lockb`
+- `go.sum`
+- `Cargo.lock`
+- `composer.lock`
+- `Gemfile.lock`
+- `poetry.lock`
+- `*.lock`
 
 ## Detected Patterns
 
