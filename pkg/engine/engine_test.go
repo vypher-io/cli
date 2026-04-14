@@ -116,7 +116,7 @@ func TestCryptoAddresses(t *testing.T) {
 		t.Error("Expected to find Ethereum Address match")
 	}
 
-	// Tag filtering — crypto tag should find crypto rules
+	// Tag filtering - crypto tag should find crypto rules
 	cryptoResults := ScanContentWithTags(btcContent, []string{"crypto"})
 	foundCrypto := false
 	for _, m := range cryptoResults {
@@ -168,7 +168,7 @@ func TestScanContentWithTags(t *testing.T) {
 }
 
 func TestKeywordProximity(t *testing.T) {
-	// SSN with keyword nearby — should have KeywordProximity=true
+	// SSN with keyword nearby - should have KeywordProximity=true
 	withKeyword := "My SSN is 123-45-6789 on file."
 	results := ScanContent(withKeyword)
 	foundSSN := false
@@ -184,7 +184,7 @@ func TestKeywordProximity(t *testing.T) {
 		t.Error("Expected to find SSN match")
 	}
 
-	// SSN without any keywords nearby — should have KeywordProximity=false
+	// SSN without any keywords nearby - should have KeywordProximity=false
 	// Use content where the SSN appears far from any proximity keywords
 	withoutKeyword := "The number is 123-45-6789 listed in the database."
 	results = ScanContent(withoutKeyword)
@@ -220,7 +220,7 @@ func TestKeywordProximity(t *testing.T) {
 		t.Error("Expected to find Credit Card match")
 	}
 
-	// Email — no proximity keywords defined, should always be false
+	// Email - no proximity keywords defined, should always be false
 	emailContent := "Email: test@example.com"
 	results = ScanContent(emailContent)
 	for _, m := range results {

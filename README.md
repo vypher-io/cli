@@ -215,12 +215,12 @@ Vypher ships with 11 built-in detection patterns:
 |---|---------|-------------|------|------------|
 | 1 | **Credit Card** | 13-16 digit card numbers | `finance`, `pii` | Luhn ✓, Proximity |
 | 2 | **SSN** | US Social Security Numbers (XXX-XX-XXXX) | `finance`, `pii`, `government` | Proximity |
-| 3 | **Email** | Email addresses | `pii`, `communication` | — |
-| 4 | **Phone** | US/International phone numbers | `pii`, `communication` | — |
-| 5 | **IBAN** | International Bank Account Numbers | `finance` | — |
-| 6 | **MRN** | Medical Record Numbers (6-12 digits) | `healthcare`, `phi` | — |
-| 7 | **DOB** | Date of Birth near keywords | `pii`, `phi` | — |
-| 8 | **ICD-10** | ICD-10 medical diagnosis codes | `healthcare`, `phi` | — |
+| 3 | **Email** | Email addresses | `pii`, `communication` | N/A |
+| 4 | **Phone** | US/International phone numbers | `pii`, `communication` | N/A |
+| 5 | **IBAN** | International Bank Account Numbers | `finance` | N/A |
+| 6 | **MRN** | Medical Record Numbers (6-12 digits) | `healthcare`, `phi` | N/A |
+| 7 | **DOB** | Date of Birth near keywords | `pii`, `phi` | N/A |
+| 8 | **ICD-10** | ICD-10 medical diagnosis codes | `healthcare`, `phi` | N/A |
 | 9 | **Bitcoin** | P2PKH, P2SH, Bech32 wallet addresses | `finance`, `crypto` | Proximity |
 | 10 | **Ethereum** | 0x-prefixed 40 hex char addresses | `finance`, `crypto` | Proximity |
 | 11 | **Solana** | Base58 32-44 char wallet addresses | `finance`, `crypto` | Proximity |
