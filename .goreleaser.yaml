@@ -77,3 +77,16 @@ brews:
       bin.install "vypher"
     test: |
       system "#{bin}/vypher", "--version"
+
+scoops:
+  - name: vypher
+    repository:
+      owner: vypher-io
+      name: scoop-bucket
+      token: "{{ .Env.SCOOP_BUCKET_TOKEN }}"
+    homepage: "https://github.com/vypher-io/cli"
+    description: "CLI tool for scanning files for PII and PHI (Finance & Healthcare)"
+    license: "MIT"
+    commit_author:
+      name: vypher-bot
+      email: bot@vypher.io

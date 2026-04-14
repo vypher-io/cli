@@ -24,6 +24,13 @@ go build -o vypher
 brew install vypher-io/tap/vypher
 ```
 
+**Windows via Scoop:**
+
+```powershell
+scoop bucket add vypher-io https://github.com/vypher-io/scoop-bucket
+scoop install vypher
+```
+
 ## Testing
 
 To run the unit tests for the project:

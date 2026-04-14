@@ -1,0 +1,23 @@
+{
+  "version": "0.0.0",
+  "description": "CLI tool for scanning files for PII and PHI (Finance & Healthcare)",
+  "homepage": "https://github.com/vypher-io/cli",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/vypher-io/cli/releases/download/v0.0.0/vypher_0.0.0_windows_amd64.zip",
+      "hash": "REPLACE_WITH_SHA256"
+    }
+  },
+  "bin": "vypher.exe",
+  "checkver": {
+    "github": "https://github.com/vypher-io/cli"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/vypher-io/cli/releases/download/v$version/vypher_$version_windows_amd64.zip"
+      }
+    }
+  }
+}
