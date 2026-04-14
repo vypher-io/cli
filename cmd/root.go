@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"os/exec"
+	"runtime"
 
 	"github.com/spf13/cobra"
 )
@@ -45,7 +47,28 @@ func Execute() {
 	}
 }
 
+var docsCmd = &cobra.Command{
+	Use:   "docs",
+	Short: "Open the Vypher documentation in your browser",
+	Run: func(cmd *cobra.Command, args []string) {
+		url := "https://docs.vypher.io"
+		var err error
+		switch runtime.GOOS {
+		case "darwin":
+			err = exec.Command("open", url).Start()
+		case "windows":
+			err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+		default:
+			err = exec.Command("xdg-open", url).Start()
+		}
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Could not open browser: %v\nVisit: %s\n", err, url)
+		}
+	},
+}
+
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (e.g. .vypher.yaml)")
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(docsCmd)
 }
