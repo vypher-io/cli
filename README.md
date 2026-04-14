@@ -31,6 +31,12 @@ scoop bucket add vypher-io https://github.com/vypher-io/scoop-bucket
 scoop install vypher
 ```
 
+**Docker (no install required):**
+
+```bash
+docker run --rm -v "$(pwd)":/scan pseudocoding/vypher scan --target /scan
+```
+
 ## Testing
 
 To run the unit tests for the project:
