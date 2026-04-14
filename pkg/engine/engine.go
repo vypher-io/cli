@@ -20,6 +20,7 @@ type Match struct {
 	RuleName         string
 	Content          string
 	Index            int
+	Line             int
 	ValidatedByLuhn  bool
 	KeywordProximity bool // true when a proximity keyword was found near the match
 }
@@ -152,6 +153,11 @@ func checkKeywordProximity(content string, matchStart, matchEnd int, keywords []
 	return false
 }
 
+// indexToLine returns the 1-based line number for a byte offset in content.
+func indexToLine(content string, index int) int {
+	return strings.Count(content[:index], "\n") + 1
+}
+
 // ScanContent scans a string content for all defined rules
 func ScanContent(content string) []Match {
 	return ScanContentWithTags(content, nil)
@@ -181,6 +187,7 @@ func ScanContentWithTags(content string, tags []string) []Match {
 					RuleName:         rule.Name,
 					Content:          matchContent,
 					Index:            loc[0],
+					Line:             indexToLine(content, loc[0]),
 					ValidatedByLuhn:  true,
 					KeywordProximity: proximity,
 				})
@@ -189,6 +196,7 @@ func ScanContentWithTags(content string, tags []string) []Match {
 					RuleName:         rule.Name,
 					Content:          matchContent,
 					Index:            loc[0],
+					Line:             indexToLine(content, loc[0]),
 					KeywordProximity: proximity,
 				})
 			}

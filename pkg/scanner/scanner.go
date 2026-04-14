@@ -15,7 +15,23 @@ import (
 )
 
 // DefaultIgnoreDirs contains directory names that are skipped by default.
-var DefaultIgnoreDirs = []string{".git", "node_modules", "vendor", ".venv", "__pycache__"}
+var DefaultIgnoreDirs = []string{".git", "node_modules", "vendor", ".venv", "__pycache__", "dist", "build", ".next", ".nuxt", "out"}
+
+// DefaultIgnoreFiles contains file names/patterns that are skipped by default
+// because they are known to contain hashes, checksums, or generated content
+// that produce false positives.
+var DefaultIgnoreFiles = []string{
+	"package-lock.json",
+	"yarn.lock",
+	"pnpm-lock.yaml",
+	"bun.lockb",
+	"go.sum",
+	"Cargo.lock",
+	"composer.lock",
+	"Gemfile.lock",
+	"poetry.lock",
+	"*.lock",
+}
 
 // ScanOptions holds configurable options for the Scan function.
 type ScanOptions struct {
@@ -139,6 +155,13 @@ func collectFiles(rootDir string, opts ScanOptions) []string {
 				if matched, _ := filepath.Match(pattern, relPath); matched {
 					return nil
 				}
+			}
+		}
+
+		base := d.Name()
+		for _, pattern := range DefaultIgnoreFiles {
+			if matched, _ := filepath.Match(pattern, base); matched {
+				return nil
 			}
 		}
 

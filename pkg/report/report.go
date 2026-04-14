@@ -157,7 +157,7 @@ func printConsole(results []FileResult) {
 			fmt.Printf("%s: %s\n", green("File"), res.FilePath)
 			for _, match := range res.Matches {
 				maskedContent := maskContent(match.Content)
-				fmt.Printf("  - [%s] %s (Index: %d)\n", yellow(match.RuleName), maskedContent, match.Index)
+				fmt.Printf("  - [%s] %s (Line: %d)\n", yellow(match.RuleName), maskedContent, match.Line)
 			}
 			fmt.Println()
 		}
